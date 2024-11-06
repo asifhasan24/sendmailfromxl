@@ -1,27 +1,16 @@
-
-// function listDrafts() {
-//   const drafts = GmailApp.getDrafts();
-//   drafts.forEach(draft => {
-//     Logger.log(`Subject: ${draft.getMessage().getSubject()} | Draft ID: ${draft.getId()}`);
-//   });
-// }
-
-
-
-
 function sendEmailsWithLabel() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("EmailRecipients");
   const data = sheet.getDataRange().getValues();
   
   // Specify the draft ID of your email template
-  const templateDraftId = 'r5807884351378055534'; // Replace with your template draft ID
+  const templateDraftId = 'YOUR_TEMPLATE_DRAFT_ID'; // Replace with your template draft ID
   const templateDraft = GmailApp.getDraft(templateDraftId);
   const templateMessage = templateDraft.getMessage();
   const subjectTemplate = templateMessage.getSubject();
   const bodyTemplate = templateMessage.getBody();
 
   // Define the label name
-  const labelName = "PhD Student for Fall 2025 - Artificial Intelligence and Machine Learning"; // Replace with your preferred label name
+  const labelName = "SentViaScript"; // Replace with your preferred label name
   let label = GmailApp.getUserLabelByName(labelName);
   
   // Create the label if it doesn’t exist
